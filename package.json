@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "build": "parcel build src/index.html"
+    "bundle":"parcel build src/index.html",
+    "copy": "cp src/pwabuilder-sw.js dist/",
+    "build":"npm run bundle && npm run copy"
   },
   "devDependencies": {
     "@parcel/packager-raw-url": "^2.4.1",
