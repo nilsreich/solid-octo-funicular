@@ -15,7 +15,7 @@
   </head>
   <body>
     <div class="w-3/4 mx-auto mt-20">
-      <form onsubmit="test();return false" action="#">
+      <form onsubmit="test();return false" target="">
         <input
           class="border rounded px-2 py-2"
           id="userinput"
@@ -32,32 +32,41 @@
       <ul id="liste"></ul>
     </div>
     <script>
-      let todos = [];
+      let todos = new Array(0);
 
       function test() {
-        if(document.getElementById("userinput").value != ''){
-        todos.push(document.getElementById("userinput").value);
-        localStorage.setItem("todos", JSON.stringify(todos));
-        update();
-        document.getElementById("userinput").value = "";
-        document.getElementById("userinput").focus();
-      }
+        if (document.getElementById("userinput").value != "") {
+          todos.push(document.getElementById("userinput").value);
+          localStorage.setItem("todos", JSON.stringify(todos));
+          update();
+          document.getElementById("userinput").value = "";
+          document.getElementById("userinput").focus();
+        }
       }
 
       function init() {
+        try {
           todos = JSON.parse(localStorage.getItem("todos"));
-          update();
+        } catch {
+          console.log(error);
+        }
+        update();
       }
-      init(todos);
+      window.onload = function () {
+        init();
+      };
       function update() {
         let htmlstring = [];
         let ele_liste = document.getElementById("liste");
-          for (let i = 0; i < todos.length; i += 1) {
-            htmlstring.push(
-              `<li class='border rounded my-2 px-2 py-1 w-64 hover:bg-gray-200' onclick='rem(${i})'>${todos[i]}</li>`
-            );
+        for (let i = 0; i < todos.length; i += 1) {
+          htmlstring.push(
+            `<li class='border rounded my-2 px-2 py-1 w-64 hover:bg-gray-200' onclick='rem(${i})'>${todos[i]}</li>`
+          );
           ele_liste.innerHTML = htmlstring.join("");
-        } if(todos.length === 0) {ele_liste.innerHTML = ''}
+        }
+        if (todos.length === 0) {
+          ele_liste.innerHTML = "";
+        }
       }
 
       function rem(i) {
