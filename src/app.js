@@ -1,6 +1,11 @@
 let todos = [];
 let button = document.getElementById('addform')
-button.addEventListener('submit',()=>{test})
+button.addEventListener('click',()=>{test})
+let ele_input = document.getElementById('userinput')
+ele_input.addEventListener("keyup", ({key}) => {
+  if (key === "Enter") {
+test()  }
+})
 function test() {
   event.preventDefault()
   if (document.getElementById("userinput").value != "") {
