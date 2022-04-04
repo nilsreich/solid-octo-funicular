@@ -28,11 +28,14 @@
           let todos = [];
 
 function test() {
+  if (todos) {
+
   todos.push(document.getElementById("userinput").value);
   localStorage.setItem("todos", JSON.stringify(todos));
   update();
   document.getElementById("userinput").value = "";
   document.getElementById("userinput").focus();
+  }
 }
 
 function init(){
@@ -43,12 +46,15 @@ init()
 function update() {
   let htmlstring = [];
   let ele_liste = document.getElementById("liste");
-  for (let i = 0; i < todos.length; i += 1) {
+  if (todos) {
+      for (let i = 0; i < todos.length; i += 1) {
     htmlstring.push(
       `<li class='border rounded my-2 px-2 py-1 w-64 hover:bg-gray-200' onclick='rem(${i})'>${todos[i]}</li>`
     );
   }
   ele_liste.innerHTML = htmlstring.join("");
+  }
+
 }
 
 function rem(i) {
