@@ -1,0 +1,2 @@
+let e=[];function t(){let t=[],o=document.getElementById("liste");for(let l=0;l<e.length;l+=1)t.push(`<li class='border rounded my-2 px-2 py-1 w-64 hover:bg-gray-200' onclick='rem(${l})'>${e[l]}</li>`),o.innerHTML=t.join("");0===e.length&&(o.innerHTML="")}document.getElementById("addform").addEventListener("submit",(()=>{})),localStorage.getItem("todos")?(e=JSON.parse(localStorage.getItem("todos")),t()):localStorage.setItem("todos",JSON.stringify(e));
+//# sourceMappingURL=index.3e4c87ea.js.map
