@@ -1,10 +1,10 @@
 {
   "background_color": "#ffffff",
   "display": "standalone",
-  "name": null,
+  "name": "nils",
   "orientation": "any",
   "scope": "/",
-  "short_name": null,
+  "short_name": "test",
   "start_url": "/",
   "theme_color": "#ffffff",
   "icons": [
