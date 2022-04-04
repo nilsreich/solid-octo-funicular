@@ -15,26 +15,29 @@
   </head>
   <body>
     <div class="w-3/4 mx-auto mt-20">
-      <form onsubmit="test();return false" target="">
-        <input
-          class="border rounded px-2 py-2"
-          id="userinput"
-          placeholder="Todo"
-        />
-        <button
-          type="submit"
-          class="py-2 px-4 bg-blue-500 text-white rounded-lg"
-        >
-          + add
-        </button>
-      </form>
+        
+      <form onsubmit="test()">
+      <input
+        class="border rounded px-2 py-2"
+        id="userinput"
+        placeholder="Todo"
+      />
+      <button
+      type="submit"
+        class="py-2 px-4 bg-blue-500 text-white rounded-lg"
+      >
+        + add
+      </button>
+    </form>
+
       <div class="text-4xl mt-4">Todos</div>
       <ul id="liste"></ul>
     </div>
     <script>
-      let todos = new Array(0);
+      let todos = [];
 
       function test() {
+        event.preventDefault()
         if (document.getElementById("userinput").value != "") {
           todos.push(document.getElementById("userinput").value);
           localStorage.setItem("todos", JSON.stringify(todos));
@@ -45,16 +48,15 @@
       }
 
       function init() {
-        try {
+
+        if (!localStorage.getItem("todos")) {
+          localStorage.setItem("todos", JSON.stringify(todos));
+        } else {
           todos = JSON.parse(localStorage.getItem("todos"));
-        } catch {
-          console.log(error);
+          update();
         }
-        update();
       }
-      window.onload = function () {
-        init();
-      };
+      init();
       function update() {
         let htmlstring = [];
         let ele_liste = document.getElementById("liste");
