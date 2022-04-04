@@ -24,24 +24,24 @@
         </ul>
       </div>
       <script>
+  let todos = [];
 
 
 function test() {
-  if (todos) {
 
   todos.push(document.getElementById("userinput").value);
   localStorage.setItem("todos", JSON.stringify(todos));
   update();
   document.getElementById("userinput").value = "";
   document.getElementById("userinput").focus();
-  }
+  
 }
 
 function init(){
-  var todos = [];
 
-    todos = JSON.parse(localStorage.getItem('todos'))
-    update()
+    try {
+      todos = JSON.parse(localStorage.getItem('todos')) ;   update()
+}catch{}
 }
 init()
 function update() {
