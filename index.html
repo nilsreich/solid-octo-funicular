@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="/manifest.webmanifest">
+</head>
+<body>
+    <div class=" w-3/4 mx-auto mt-20">
+        <form onsubmit="test();return false" action="#">
+          <input class="border rounded px-2 py-2" id="userinput" placeholder="Todo" />
+          <button type="submit" class='py-2 px-4 bg-blue-500 text-white rounded-lg'>+ add</button>
+        </form>
+        <div class="text-4xl mt-4">Todos</div>
+        <ul id='liste'>
+        </ul>
+      </div>
+      <script>
+          if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/generate-sw.js');
+  });
+}
+          let todos = [];
+
+function test() {
+  todos.push(document.getElementById("userinput").value);
+  localStorage.setItem("todos", JSON.stringify(todos));
+  update();
+  document.getElementById("userinput").value = "";
+  document.getElementById("userinput").focus();
+}
+
+function init(){
+    todos = JSON.parse(localStorage.getItem('todos'))
+    update()
+}
+init()
+function update() {
+  let htmlstring = [];
+  let ele_liste = document.getElementById("liste");
+  for (let i = 0; i < todos.length; i += 1) {
+    htmlstring.push(
+      `<li class='border rounded my-2 px-2 py-1 w-64 hover:bg-gray-200' onclick='rem(${i})'>${todos[i]}</li>`
+    );
+  }
+  ele_liste.innerHTML = htmlstring.join("");
+}
+
+function rem(i) {
+  todos.splice(i, 1);
+  localStorage.setItem("todos", JSON.stringify(todos));
+  update();
+}
+
+      </script>
+</body>
+</html>
