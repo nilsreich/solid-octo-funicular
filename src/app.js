@@ -1,13 +1,12 @@
 let todos = [];
 let button = document.getElementById('addform')
-button.addEventListener('click',()=>{test})
+button.addEventListener('click',()=>{test()})
 let ele_input = document.getElementById('userinput')
 ele_input.addEventListener("keyup", ({key}) => {
   if (key === "Enter") {
 test()  }
 })
 function test() {
-  event.preventDefault()
   if (document.getElementById("userinput").value != "") {
     todos.push(document.getElementById("userinput").value);
     localStorage.setItem("todos", JSON.stringify(todos));
