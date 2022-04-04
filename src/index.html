@@ -8,7 +8,9 @@
     <link rel="manifest" href="manifest.json" />
     <link href="./index.css" rel="stylesheet">
 <script type="module">
-await import ('https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate');
+    let src = 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+
+await import(src);
 const el = document.createElement('pwa-update');
 document.body.appendChild(el);
 </script>
