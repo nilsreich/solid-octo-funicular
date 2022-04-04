@@ -25,7 +25,6 @@
       </div>
       <script>
 
-          let todos = [];
 
 function test() {
   if (todos) {
@@ -39,6 +38,8 @@ function test() {
 }
 
 function init(){
+  var todos = [];
+
     todos = JSON.parse(localStorage.getItem('todos'))
     update()
 }
